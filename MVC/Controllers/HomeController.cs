@@ -18,6 +18,12 @@ namespace MVC.Controllers
             return View();
         }
 
+        public ActionResult Parcelle(int IdParcelle)
+        {
+            //ViewBag.Message = "You have to chose dates for your reservation !";
+            return View();
+        }
+
         //Si on ne choisi pas de chambre cela nous renvoie vers la page de base
         public ActionResult ListHotel()
         {

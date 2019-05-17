@@ -42,12 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fruit.cs" />
     <Compile Include="Hotel.cs" />
+    <Compile Include="Parcelle.cs" />
     <Compile Include="Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recolte.cs" />
     <Compile Include="Reservation.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="RoomReservation.cs" />
+    <Compile Include="Secteur.cs" />
+    <Compile Include="Variete.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

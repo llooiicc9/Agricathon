@@ -210,6 +210,7 @@
     <Content Include="Views\Reservation\ReservationInformation.cshtml" />
     <Content Include="Views\Reservation\ReservationCancel.cshtml" />
     <Content Include="Views\Home\Hotel.cshtml" />
+    <Content Include="Views\Home\Parcelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
