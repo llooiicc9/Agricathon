@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    class Parcelle
+    public class Parcelle
     {
         //Déclare les champs présents sur la base de donnée
         public int IdParcelle { get; set; }

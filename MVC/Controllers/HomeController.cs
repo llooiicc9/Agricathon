@@ -23,6 +23,11 @@ namespace MVC.Controllers
             //ViewBag.Message = "You have to chose dates for your reservation !";
             return View();
         }
+        public ActionResult Fumure()
+        {
+            //ViewBag.Message = "You have to chose dates for your reservation !";
+            return View();
+        }
 
         //Si on ne choisi pas de chambre cela nous renvoie vers la page de base
         public ActionResult ListHotel()

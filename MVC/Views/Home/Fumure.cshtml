@@ -1,0 +1,87 @@
+﻿@model IEnumerable<DTO.Room>
+@using BLL;
+
+@{
+    ViewBag.Title = "Fauchage";
+ 
+}
+
+<h2>ListHotel</h2>
+<h3>@Html.ActionLink("Research another room", "Index", "Home")</h3>
+
+<h3>@ViewBag.Message</h3>
+
+
+<body>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Employé</th>
+                <th scope="col">Heures travail</th>
+                <th scope="col">Cat. Employé</th>
+                <th scope="col">Epandage</th>
+                <th scope="col">Heures epandage</th>
+                <th scope="col">Cout employé</th>
+                <th scope="col">Cout total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ListRoomFree in Model)
+            {
+                using (Html.BeginForm("Index", "Room", FormMethod.Post))
+                {
+                    //calcul cout employé (employé * heure travail
+
+                    //calcul cout epandage ( epandage * heure epandage
+
+
+                    var hotel = HotelManager.GetHotelById(ListRoomFree.IdHotel);
+                    var picture = PictureManager.getOnePictureByIdroom(ListRoomFree.IdRoom);
+
+                    int priceIncrease = RoomManager.countRoomByIdHotel(ListRoomFree.IdHotel, (DateTime)Session["CheckInWanted"], (DateTime)Session["CheckOutWanted"], (String)Session["LocationHotel"], (int)Session["nbCustomer"]);
+                    double price = (double)ListRoomFree.Price;
+
+                    if (priceIncrease.Equals(1))
+                    {
+                        price = price + (price * 0.2);
+                    }
+                    
+                    String descriptionHotelLong = hotel.Description;
+                    descriptionHotelLong = descriptionHotelLong.Substring(0, 500);
+
+                    HtmlString descriptionHotel = new HtmlString(descriptionHotelLong);
+
+                    <input type="hidden" name="IdRoom" value="@Html.DisplayFor(modelItem => ListRoomFree.IdRoom)" />
+                    <tr>
+                        <td><img src="@picture.Url" alt="Room number @picture.IdRoom" width="300px" height="250px" /></td>
+                        <td width="500px">@descriptionHotel ... Read More ( click on See more )</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    Hotel : @Html.ActionLink(hotel.Name,"Hotel","Home", new { hotel.IdHotel }, hotel.IdHotel)
+                                </li>
+                                <li>
+                                    @price CHF / night
+                                </li>
+                                <li>Number of people : @Html.DisplayFor(modelItem => ListRoomFree.Type)</li>
+                            </ul>
+                        </td>
+                        
+                        <td>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="See more" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+</body>
+
+

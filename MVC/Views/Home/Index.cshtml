@@ -1,4 +1,4 @@
-﻿@model MVC.ViewModels.SearchVM
+﻿@model DTO.Parcelle
 
 @{
     ViewBag.Title = "Home Page";
@@ -7,32 +7,36 @@
 
 <div id="booking" class="section">
     <div class="section-center">
-        <div class="container"> 
-            <div class="booking-form">
-                @using (Html.BeginForm("optionParcelle", "Home", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="form-group">
-                                <span class="form-label">Parcelle No.</span>
-                                @Html.DropDownListFor(model => model.nbCustomer,
-                                    new List<SelectListItem> {
-                                        new SelectListItem { Value = "100" , Text = "100" },
-                                        new SelectListItem { Value = "101" , Text = "101" },
-                                        new SelectListItem { Value = "102" , Text = "102" }
-                                    },
-                                    new { @class= "form-control" })
+        <div class="container">
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="booking-form">
+                        @using (Html.BeginForm("Parcelle", "Home", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="form-group">
+                                        <span class="form-label">Parcelle No.</span>
+                                        @Html.DropDownListFor(model => model.IdParcelle,
+                                            new List<SelectListItem> {
+                                                new SelectListItem { Value = "100" , Text = "100" },
+                                                new SelectListItem { Value = "101" , Text = "101" },
+                                                new SelectListItem { Value = "102" , Text = "102" }
+                                            },
+                                            new { @class= "form-control" })
 
-                                <span class="select-arrow"></span>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-btn">
-                        <button class="submit-btn">Acceder</button>
-                    </div>
+                            <div class="form-btn">
+                                <button class="submit-btn">Acceder</button>
+                            </div>
 
-                }
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>
