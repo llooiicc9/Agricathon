@@ -9,9 +9,13 @@ namespace DTO
     public class Parcelle
     {
         //Déclare les champs présents sur la base de donnée
-        public int IdParcelle { get; set; }
-        public int Number { get; set; }
-        public string Name { get; set; }
-        public string Surface { get; set; }
+        public int IdPasserelle { get; set; }
+        public int Numero { get; set; }
+        public string Nom { get; set; }
+        public double Surface { get; set; }
+        public int IdFauche { get; set; }
+
+
+
     }
 }

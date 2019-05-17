@@ -13,7 +13,7 @@ namespace BLL
         //Récupère tous les hotels dans une liste
         public static List<Hotel> GetAllHotel()
         {
-            return HotelDB.GetAllHotel();
+            return HotelDB.GetAllHotel();//djeéajfékadsfj
         }
         
         //Récupère un hotel selon son id
