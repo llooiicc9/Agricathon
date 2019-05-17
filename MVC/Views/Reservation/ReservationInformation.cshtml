@@ -1,0 +1,47 @@
+﻿@model MVC.ViewModels.InfoReservationVM
+
+@{
+    ViewBag.Title = "ReservationInformation";
+    String checkIn = Model.reservation.CheckIn.ToString("dd.MM.yyyy");
+    String checkOut = Model.reservation.CheckOut.ToString("dd.MM.yyyy");
+}
+
+<h2>Reservation Information</h2>
+
+<h3>@ViewBag.Message</h3>
+
+
+<ul>
+    <li>Customer informations : @Html.DisplayFor(model => model.reservation.ClientFirstName) @Html.DisplayFor(model => model.reservation.ClientLastName)</li>
+    <li>From : @checkIn - To : @checkOut</li>
+    <li>IdReservation : @Html.DisplayFor(model => model.reservation.IdReservation)</li>
+    <li>Total of customer : @Html.DisplayFor(model => model.nbCustomerTotal)</li>
+</ul>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Hotel - Location</th>
+            <th scope="col">Room informations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var HotelRooms in Model.listHotels.Zip(Model.listRooms, Tuple.Create))
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => HotelRooms.Item1.Name) - @Html.DisplayFor(modelItem => HotelRooms.Item1.Location)</td>
+                <td>Room for @Html.DisplayFor(modelItem => HotelRooms.Item2.Type) customer(s) at the price of @Html.DisplayFor(modelItem => HotelRooms.Item2.Price) CHF / night</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    @using (Html.BeginForm("ReservationCancel", "Reservation", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="idReservation" value="@Html.DisplayFor(model => model.reservation.IdReservation)" />
+        <input type="submit" value="Cancel this reservation" class="btn btn-primary">
+
+    }
+</p>

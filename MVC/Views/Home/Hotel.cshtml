@@ -1,0 +1,25 @@
+﻿@model DTO.Hotel
+@{
+    ViewBag.Title = "Hotel";
+
+    HtmlString descriptionHotel = new HtmlString(Model.Description);
+}
+
+<h2>Hotel</h2>
+
+<h3>@Html.DisplayFor(model => model.Name) - @Html.DisplayFor(model => model.Location)</h3>
+<div class="row">
+    <div class="col-sm-4">
+        <ul>
+            <li>Phone number : @Html.DisplayFor(model => model.Phone)</li>
+            <li>Number of star : @Html.DisplayFor(model => model.Category)</li>
+            <li>Wifi : @Html.DisplayFor(model => model.HasWifi)</li>
+            <li>Parking : @Html.DisplayFor(model => model.HasParking)</li>
+            <li>Email : @Html.DisplayFor(model => model.Email)</li>
+            <li>Website : <a href="#">@Html.DisplayFor(model => model.Website)</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-8 ">
+        @descriptionHotel
+    </div>
+</div>

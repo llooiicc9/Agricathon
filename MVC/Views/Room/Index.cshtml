@@ -1,0 +1,96 @@
+﻿@model MVC.ViewModels.OneRoomVM
+
+@{
+    ViewBag.Title = "OneRoom";
+}
+
+<h2>OneRoom</h2>
+
+<body>
+    @{
+
+        HtmlString descriptionRoom = new HtmlString(Model.room.Description);
+
+        Decimal totalPrice = Model.room.Price * (int)Session["NbDay"];
+
+    }
+    <h3>@Html.DisplayFor(model => model.hotel.Name) - @Html.DisplayFor(model => model.hotel.Location)</h3>
+    <div class="row">
+        <div class="col-sm-3">
+            <ul>
+                <li>Phone number : @Html.DisplayFor(model => model.hotel.Phone)</li>
+                <li>Number of star : @Html.DisplayFor(model => model.hotel.Category)</li>
+                <li>Wifi : @Html.DisplayFor(model => model.hotel.HasWifi)</li>
+                <li>Parking : @Html.DisplayFor(model => model.hotel.HasParking)</li>
+                <li>Email : @Html.DisplayFor(model => model.hotel.Email)</li>
+                <li>Website : <a href="#">@Html.DisplayFor(model => model.hotel.Website)</a></li>
+            </ul>
+        </div>
+        <ul class="PictureForRoom">
+            @foreach (var PictureRoom in Model.picture)
+            {
+                <div class="col-sm-3">
+                    <li>
+                        <a href="#">
+                            <img src="@PictureRoom.Url" alt="Room number @PictureRoom.IdRoom" />
+                            <strong></strong>
+                        </a>
+                    </li>
+                </div>
+            }
+        </ul>
+    </div>
+    <br />
+    <h3>Info room</h3>
+    <div class="row">
+        <div class="col-sm-3">
+            <ul>
+                <li>Room number : @Html.DisplayFor(modelItem => Model.room.Number)</li>
+                <li>Room Type : @Html.DisplayFor(modelItem => Model.room.Type)</li>
+                <li>Has TV : @Html.DisplayFor(modelItem => Model.room.HasTV)</li>
+                <li>Has Hair Dryer : @Html.DisplayFor(modelItem => Model.room.HasHairDryer)</li>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            @descriptionRoom
+        </div>
+    </div>
+
+    <h3>Availability</h3>
+    <div class="row">
+        <div class="col-sm-4">
+            <ul>
+                <li>Check-in : @Session["CheckInWanted"]</li>
+                <li>Check-Out : @Session["CheckOutWanted"]</li>
+                <li>Price by night : @Html.DisplayFor(modelItem => Model.room.Price)</li>
+                <li>Number of night : @Session["NbDay"]</li>
+                <li>Total Price : @totalPrice CHF TTC</li>
+            </ul>
+        </div>
+        <div class="col-sm-7">
+            <div class="form-horizontal">
+                @using (Html.BeginForm("ReservationConfirmation", "Reservation", FormMethod.Post))
+                {
+                    if ((int)Session["idReservation"] == 0)
+                    {
+                    <div class="form-group">
+                        <label class="control-label col-md-2">First Name :</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" name="firstName" type="text" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Last Name :</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" name="lastName" type="text" required />
+                        </div>
+                    </div>
+                    }
+                    <input type="hidden" name="idRoom" value="@Html.DisplayFor(modelItem => Model.room.IdRoom)" />
+                    <input type="submit" value="Book this room !" class="btn btn-primary">
+                }
+            </div>
+        </div>
+    </div>
+
+</body>

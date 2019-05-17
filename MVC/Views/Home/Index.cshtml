@@ -1,0 +1,128 @@
+﻿@model MVC.ViewModels.SearchVM
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-md-push-5">
+                    <div class="booking-cta">
+                        <h1>Book your dream hotel</h1>
+                        <p>
+                            Book now your beautiful hotel in Valais. We have rooms in Sion, Martigny and Brig.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-pull-7">
+                    <div class="booking-form">
+                        @using (Html.BeginForm("ListHotel", "Home", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Location</span>
+                                        <select class="form-control" name="HotelLocation">
+                                            <option value="Martigny">Martigny</option>
+                                            <option value="Sion">Sion</option>
+                                            <option value="Brig">Brig</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Customer</span>
+                                        @Html.DropDownListFor(model => model.nbCustomer,
+                                          new List<SelectListItem> {
+                                               new SelectListItem { Value = "1" , Text = "1 Person" },
+                                               new SelectListItem { Value = "2" , Text = "2 Persons" },
+                                               new SelectListItem { Value = "3" , Text = "3 Persons" },
+                                               new SelectListItem { Value = "4" , Text = "4 Persons" },
+                                               new SelectListItem { Value = "5" , Text = "5 Persons" },
+                                               new SelectListItem { Value = "6" , Text = "6 Persons" },
+                                               new SelectListItem { Value = "7" , Text = "7 Persons" },
+                                               new SelectListItem { Value = "8" , Text = "8 Persons" },
+                                               new SelectListItem { Value = "9" , Text = "9 Persons" }
+                                            },
+                                          new { @class= "form-control" })
+
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Check In</span>
+                                        <input class="form-control" name="CheckInWanted" type="date" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Check out</span>
+                                        <input class="form-control" name="CheckOutWanted" type="date" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">TV</span>
+                                        <select class="form-control" name="hasTv">
+                                            <option value="0">doesn't matter</option>
+                                            <option value="1">yes</option>
+                                            <option value="2">no</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Hair Dryer</span>
+                                        <select class="form-control" name="hasHairDryer">
+                                            <option value="0">doesn't matter</option>
+                                            <option value="1">yes</option>
+                                            <option value="2">no</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Wifi</span>
+                                        <select class="form-control" name="hasWifi">
+                                            <option value="0">doesn't matter</option>
+                                            <option value="1">yes</option>
+                                            <option value="2">no</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Parking</span>
+                                        <select class="form-control" name="hasParking">
+                                            <option value="0">doesn't matter</option>
+                                            <option value="1">yes</option>
+                                            <option value="2">no</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-btn">
+                                <button class="submit-btn">Check availability</button>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

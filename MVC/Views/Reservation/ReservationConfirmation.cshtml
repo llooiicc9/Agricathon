@@ -1,0 +1,29 @@
+﻿@model MVC.ViewModels.SearchVM
+
+@{
+    ViewBag.Title = "Reservation";
+
+    //Session["idReservation"]
+}
+
+<h2>Reservation</h2>
+
+<h3>@ViewBag.Message</h3>
+
+@if ((int)Session["nbCustomer"] >= 1)
+{
+    <p>Don't forget you have to book room for @Session["nbCustomer"] customer(s) more !</p>
+
+    using (Html.BeginForm("ListHotel", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="HotelLocation" value="@Session["LocationHotel"]" />
+        <input type="hidden" name="nbCustomer" value="@Session["nbCustomer"]" />
+        <input type="hidden" name="CheckInWanted" value="@Session["CheckInWanted"]" />
+        <input type="hidden" name="CheckOutWanted" value="@Session["CheckOutWanted"]" />
+
+        <input type="submit" value="Click here" class="btn btn-primary">
+    }
+}
+
+
