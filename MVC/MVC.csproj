@@ -159,6 +159,10 @@
     <Compile Include="ViewModels\SearchVM.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Database1.mdf" />
+    <Content Include="App_Data\Database1_log.ldf">
+      <DependentUpon>Database1.mdf</DependentUpon>
+    </Content>
     <Content Include="img\background.jpg" />
     <Content Include="img\backgroundSion.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -208,7 +212,6 @@
     <Content Include="Views\Home\Hotel.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
